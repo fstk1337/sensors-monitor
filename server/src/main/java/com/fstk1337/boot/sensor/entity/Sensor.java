@@ -1,31 +1,37 @@
 package com.fstk1337.boot.sensor.entity;
 
-import com.fstk1337.boot.sensor.model.SensorLocation;
-import com.fstk1337.boot.sensor.model.SensorType;
-import com.fstk1337.boot.sensor.model.SensorUnit;
-
 import lombok.*;
 import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "sensor")
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String name;
+    @Column(nullable = false)
     private String model;
-    private SensorType type;
+    @Column(nullable = false)
+    private String type;
+    @Column(nullable = false)
     private int minValue;
+    @Column(nullable = false)
     private int maxValue;
-    private SensorUnit unit;
-    private SensorLocation location;
+    @Column(nullable = false)
+    private String unit;
+    @Column(nullable = false)
+    private String location;
 
     @Override
     public boolean equals(Object o) {

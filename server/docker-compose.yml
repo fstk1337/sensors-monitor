@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - SENSOR_DB_USER=docker
+      - SENSOR_DB_PASSWORD=docker
+      - SENSOR_DB_NAME=sensor
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "sensor", "-U", "docker"]
+      start_period: 15s
+      interval: 10s
+      timeout: 5s
+      retries: 4
+    restart: always
