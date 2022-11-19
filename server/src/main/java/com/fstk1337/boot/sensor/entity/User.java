@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "\"user\"")
+@Table(name = "\"user\"", schema = "public")
 @Getter
 @Setter
 @ToString
@@ -14,15 +14,10 @@ import java.util.Objects;
 @AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique = true)
     private String name;
-    @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
     private String role;
 
     @Override
