@@ -11,7 +11,7 @@ import java.util.Objects;
 @SequenceGenerator(
     name = "modelIdGenerator",
     sequenceName = "model_id_sequence",
-    allocationSize = 1
+    allocationSize = 12
 )
 @Getter
 @Setter
@@ -23,6 +23,7 @@ public class Model {
     private Long id;
     @Column(name = "model_name", unique = true)
     private String modelName;
+    @Enumerated(EnumType.STRING)
     private SensorType type;
     @Column(name = "min_value")
     private int minValue;
@@ -48,6 +49,13 @@ public class Model {
         TEMPERATURE("celsius"),
         HUMIDITY("percent");
 
-        SensorType(String unit) {}
+        private final String unit;
+
+        SensorType(String unit) {
+            this.unit = unit;
+        }
+        String getUnit() {
+            return unit;
+        }
     }
 }

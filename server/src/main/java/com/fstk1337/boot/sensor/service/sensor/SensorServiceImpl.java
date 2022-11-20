@@ -6,13 +6,17 @@ import com.fstk1337.boot.sensor.model.sensor.Sensor;
 import com.fstk1337.boot.sensor.repository.sensor.LocationRepository;
 import com.fstk1337.boot.sensor.repository.sensor.ModelRepository;
 import com.fstk1337.boot.sensor.repository.sensor.SensorRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
+@Slf4j
 public class SensorServiceImpl implements SensorService {
     private final SensorRepository sensorRepository;
     private final LocationRepository locationRepository;
