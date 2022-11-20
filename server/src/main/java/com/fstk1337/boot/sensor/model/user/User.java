@@ -1,25 +1,30 @@
-package com.fstk1337.boot.sensor.entity;
+package com.fstk1337.boot.sensor.model.user;
 
-import com.fstk1337.boot.sensor.model.UserRole;
 import lombok.*;
 import org.hibernate.Hibernate;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "\"user\"", schema = "public")
+@Table(name = "users")
+@SequenceGenerator(
+    name = "userIdGenerator",
+    sequenceName = "user_id_sequence",
+    allocationSize = 2
+)
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userIdGenerator")
     private Long id;
-    private String name;
+    private String username;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Role role;
 
     @Override
     public boolean equals(Object o) {
