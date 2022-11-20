@@ -1,8 +1,10 @@
 package com.fstk1337.boot.sensor.entity;
 
+import com.fstk1337.boot.sensor.model.SensorLocation;
+import com.fstk1337.boot.sensor.model.SensorType;
+import com.fstk1337.boot.sensor.model.SensorUnit;
 import lombok.*;
 import org.hibernate.Hibernate;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -12,18 +14,20 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String model;
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private SensorType type;
     private int minValue;
     private int maxValue;
-    private String unit;
-    private String location;
+    @Enumerated(EnumType.STRING)
+    private SensorUnit unit;
+    @Enumerated(EnumType.STRING)
+    private SensorLocation location;
 
     @Override
     public boolean equals(Object o) {

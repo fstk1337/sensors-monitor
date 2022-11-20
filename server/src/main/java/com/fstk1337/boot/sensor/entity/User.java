@@ -1,5 +1,6 @@
 package com.fstk1337.boot.sensor.entity;
 
+import com.fstk1337.boot.sensor.model.UserRole;
 import lombok.*;
 import org.hibernate.Hibernate;
 import javax.persistence.*;
@@ -11,14 +12,14 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String password;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     @Override
     public boolean equals(Object o) {

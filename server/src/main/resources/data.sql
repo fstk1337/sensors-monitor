@@ -1,6 +1,6 @@
 INSERT INTO "user"(id, name, password, role)
-VALUES (1, 'admin', 'iamtheoneandonlygoat', 'Administrator'),
-       (2, 'user', 'iamnobodyandiamfromnowhere', 'Viewer');
+VALUES (1, 'admin', '3094042D4F193AE1B73F33E504BBCE2018E75993131F9C94FF3BCD29F3183F74', 'Administrator'),
+       (2, 'user', '081805BDA105816CE893EB730A7ED3030FC3DA71D7263B6BACF4205B46F4F66F', 'Viewer');
 
 INSERT INTO sensor(id, name, model, type, min_value, max_value, unit, location)
 VALUES (1, 'Sensor 1', 'PC33-56', 'pressure', 0, 16, 'bar', 'room1'),
