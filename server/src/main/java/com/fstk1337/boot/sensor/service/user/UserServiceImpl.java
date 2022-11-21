@@ -6,7 +6,6 @@ import com.fstk1337.boot.sensor.repository.user.RoleRepository;
 import com.fstk1337.boot.sensor.repository.user.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

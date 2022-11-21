@@ -14,19 +14,26 @@ import java.util.Objects;
     initialValue = 1000,
     allocationSize = 1
 )
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sensorIdGenerator")
     private Long id;
-    @Column(name = "sensor_name", unique = true)
-    private String sensorName;
+    @Column(unique = true)
+    private String name;
+    @Column(unique = true)
+    private String model;
     @ManyToOne
-    @JoinColumn(name = "model_id")
-    private Model model;
+    @JoinColumn(name = "sensor_type_id")
+    private SensorType sensorType;
+    @Column(name = "min_value")
+    private int minValue;
+    @Column(name = "max_value")
+    private int maxValue;
     @Basic
     private String location;
     @Basic

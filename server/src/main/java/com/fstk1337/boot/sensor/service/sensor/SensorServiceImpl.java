@@ -1,9 +1,9 @@
 package com.fstk1337.boot.sensor.service.sensor;
 
-import com.fstk1337.boot.sensor.model.sensor.Model;
 import com.fstk1337.boot.sensor.model.sensor.Sensor;
-import com.fstk1337.boot.sensor.repository.sensor.ModelRepository;
+import com.fstk1337.boot.sensor.model.sensor.SensorType;
 import com.fstk1337.boot.sensor.repository.sensor.SensorRepository;
+import com.fstk1337.boot.sensor.repository.sensor.SensorTypeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -17,12 +17,12 @@ import java.util.List;
 @Slf4j
 public class SensorServiceImpl implements SensorService {
     private final SensorRepository sensorRepository;
-    private final ModelRepository modelRepository;
+    private final SensorTypeRepository sensorTypeRepository;
 
     @Autowired
-    public SensorServiceImpl(SensorRepository sensorRepository, ModelRepository modelRepository) {
+    public SensorServiceImpl(SensorRepository sensorRepository, SensorTypeRepository sensorTypeRepository) {
         this.sensorRepository = sensorRepository;
-        this.modelRepository = modelRepository;
+        this.sensorTypeRepository = sensorTypeRepository;
     }
 
     @Override
@@ -31,18 +31,13 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public Model save(Model model) {
-        return modelRepository.save(model);
-    }
-
-    @Override
     public List<Sensor> getAllSensors() {
         return sensorRepository.findAll();
     }
 
     @Override
-    public List<Model> getAllModels() {
-        return modelRepository.findAll();
+    public List<SensorType> getAllSensorTypes() {
+        return sensorTypeRepository.findAll();
     }
 
     @Override
@@ -51,22 +46,14 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public Model getModel(Long id) {
-        return modelRepository.findById(id).orElse(null);
+    public SensorType getSensorType(Long id) {
+        return sensorTypeRepository.findById(id).orElse(null);
     }
 
     @Override
     public Sensor update(Sensor sensor) {
         if (sensorRepository.existsById(sensor.getId())) {
             return sensorRepository.save(sensor);
-        }
-        return null;
-    }
-
-    @Override
-    public Model update(Model model) {
-        if (modelRepository.existsById(model.getId())) {
-            return modelRepository.save(model);
         }
         return null;
     }
@@ -79,19 +66,7 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public void delete(Model model) {
-        if (modelRepository.exists(Example.of(model))) {
-            modelRepository.delete(model);
-        }
-    }
-
-    @Override
     public void deleteAllSensors() {
         sensorRepository.deleteAll();
-    }
-
-    @Override
-    public void deleteAllModels() {
-        modelRepository.deleteAll();
     }
 }

@@ -2,18 +2,13 @@ package com.fstk1337.boot.sensor.model.user;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.springframework.data.annotation.ReadOnlyProperty;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-@SequenceGenerator(
-    name = "userIdGenerator",
-    sequenceName = "user_id_sequence",
-    initialValue = 100,
-    allocationSize = 1
-)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,13 +16,15 @@ import java.util.Objects;
 @ToString
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userIdGenerator")
     private Long id;
     @Column(unique = true)
+    @ReadOnlyProperty
     private String username;
+    @ReadOnlyProperty
     private String password;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
+    @ReadOnlyProperty
     private Role role;
 
     @Override

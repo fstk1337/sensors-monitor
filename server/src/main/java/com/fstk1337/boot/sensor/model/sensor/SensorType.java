@@ -1,32 +1,35 @@
-package com.fstk1337.boot.sensor.model.user;
+package com.fstk1337.boot.sensor.model.sensor;
 
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.data.annotation.ReadOnlyProperty;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "roles")
-@Getter
-@Setter
+@Table(name = "sensor_types")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @ToString
-public class Role {
+public class SensorType {
     @Id
     private Long id;
-    @Column(name = "role_name", unique = true)
     @ReadOnlyProperty
-    private String roleName;
+    private String type;
+    @ReadOnlyProperty
+    private String unit;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Role role = (Role) o;
-        return id != null && Objects.equals(id, role.id);
+        SensorType sensorType = (SensorType) o;
+        return id != null && Objects.equals(id, sensorType.id);
     }
 
     @Override
