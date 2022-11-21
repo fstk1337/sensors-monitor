@@ -31,6 +31,10 @@ public class Model {
     @Column(name = "max_value")
     private int maxValue;
 
+    public String getUnit() {
+        return type.getUnit();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,10 +49,10 @@ public class Model {
     }
 
     enum SensorType {
-        PRESSURE("bar"),
-        VOLTAGE("volt"),
-        TEMPERATURE("celsius"),
-        HUMIDITY("percent");
+        Pressure("bar"),
+        Voltage("voltage"),
+        Temperature("\u2103"),
+        Humidity("%");
 
         private final String unit;
 

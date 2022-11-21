@@ -1,9 +1,7 @@
 package com.fstk1337.boot.sensor.service.sensor;
 
-import com.fstk1337.boot.sensor.model.sensor.Location;
 import com.fstk1337.boot.sensor.model.sensor.Model;
 import com.fstk1337.boot.sensor.model.sensor.Sensor;
-import com.fstk1337.boot.sensor.repository.sensor.LocationRepository;
 import com.fstk1337.boot.sensor.repository.sensor.ModelRepository;
 import com.fstk1337.boot.sensor.repository.sensor.SensorRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -19,24 +17,17 @@ import java.util.List;
 @Slf4j
 public class SensorServiceImpl implements SensorService {
     private final SensorRepository sensorRepository;
-    private final LocationRepository locationRepository;
     private final ModelRepository modelRepository;
 
     @Autowired
-    public SensorServiceImpl(SensorRepository sensorRepository, LocationRepository locationRepository, ModelRepository modelRepository) {
+    public SensorServiceImpl(SensorRepository sensorRepository, ModelRepository modelRepository) {
         this.sensorRepository = sensorRepository;
-        this.locationRepository = locationRepository;
         this.modelRepository = modelRepository;
     }
 
     @Override
     public Sensor save(Sensor sensor) {
         return sensorRepository.save(sensor);
-    }
-
-    @Override
-    public Location save(Location location) {
-        return locationRepository.save(location);
     }
 
     @Override
@@ -50,42 +41,24 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public List<Location> getAllLocations() {
-        return locationRepository.findAll();
-    }
-
-    @Override
     public List<Model> getAllModels() {
         return modelRepository.findAll();
     }
 
     @Override
-    public Sensor getSensor(String sensorName) {
-        return sensorRepository.findBySensorName(sensorName);
+    public Sensor getSensor(Long id) {
+        return sensorRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Location getLocation(String locationName) {
-        return locationRepository.findByLocationName(locationName);
-    }
-
-    @Override
-    public Model getModel(String modelName) {
-        return modelRepository.findByModelName(modelName);
+    public Model getModel(Long id) {
+        return modelRepository.findById(id).orElse(null);
     }
 
     @Override
     public Sensor update(Sensor sensor) {
         if (sensorRepository.existsById(sensor.getId())) {
             return sensorRepository.save(sensor);
-        }
-        return null;
-    }
-
-    @Override
-    public Location update(Location location) {
-        if (locationRepository.existsById(location.getId())) {
-            return locationRepository.save(location);
         }
         return null;
     }
@@ -106,13 +79,6 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public void delete(Location location) {
-        if (locationRepository.exists(Example.of(location))) {
-            locationRepository.delete(location);
-        }
-    }
-
-    @Override
     public void delete(Model model) {
         if (modelRepository.exists(Example.of(model))) {
             modelRepository.delete(model);
@@ -122,11 +88,6 @@ public class SensorServiceImpl implements SensorService {
     @Override
     public void deleteAllSensors() {
         sensorRepository.deleteAll();
-    }
-
-    @Override
-    public void deleteAllLocations() {
-        locationRepository.deleteAll();
     }
 
     @Override

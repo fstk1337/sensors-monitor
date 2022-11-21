@@ -14,8 +14,8 @@ import java.util.List;
 @RequestMapping("api/v1/users")
 public class UserController {
 
-    private final Mapper mapper;
     private final UserService userService;
+    private final Mapper mapper;
 
     @Autowired
     public UserController(UserService userService, Mapper mapper) {
@@ -37,4 +37,6 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+
+
 }

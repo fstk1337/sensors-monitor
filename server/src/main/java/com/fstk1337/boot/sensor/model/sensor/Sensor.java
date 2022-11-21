@@ -27,9 +27,10 @@ public class Sensor {
     @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;
-    @ManyToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
+    @Basic
+    private String location;
+    @Basic
+    private String description;
 
     @Override
     public boolean equals(Object o) {
