@@ -11,7 +11,8 @@ import java.util.Objects;
 @SequenceGenerator(
     name = "sensorIdGenerator",
     sequenceName = "sensor_id_sequence",
-    allocationSize = 12
+    initialValue = 1000,
+    allocationSize = 1
 )
 @Getter
 @Setter

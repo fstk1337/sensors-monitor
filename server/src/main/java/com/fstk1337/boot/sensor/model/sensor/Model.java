@@ -11,7 +11,8 @@ import java.util.Objects;
 @SequenceGenerator(
     name = "modelIdGenerator",
     sequenceName = "model_id_sequence",
-    allocationSize = 12
+    initialValue = 500,
+    allocationSize = 1
 )
 @Getter
 @Setter

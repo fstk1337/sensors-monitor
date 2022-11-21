@@ -11,19 +11,23 @@ import java.util.Objects;
 @SequenceGenerator(
     name = "userIdGenerator",
     sequenceName = "user_id_sequence",
-    allocationSize = 2
+    initialValue = 100,
+    allocationSize = 1
 )
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userIdGenerator")
     private Long id;
+    @Column(unique = true)
     private String username;
     private String password;
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @Override

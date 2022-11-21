@@ -46,13 +46,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String username) {
-        return userRepository.findByUsername(username);
+    public User getUser(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Role getRole(String roleName) {
-        return null;
+    public Role getRole(Long id) {
+        return roleRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -80,17 +80,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(User user) {
-        if (userRepository.exists(Example.of(user))) {
-            userRepository.delete(user);
+    public int deleteUser(Long userId) {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            return 1;
         }
+        return -1;
     }
 
     @Override
-    public void delete(Role role) {
-        if (roleRepository.exists(Example.of(role))) {
-            roleRepository.delete(role);
+    public int deleteRole(Long roleId) {
+        if (roleRepository.existsById(roleId)) {
+            roleRepository.deleteById(roleId);
+            return 1;
         }
+        return -1;
     }
 
     @Override

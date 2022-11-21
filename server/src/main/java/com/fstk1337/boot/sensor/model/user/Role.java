@@ -11,16 +11,19 @@ import java.util.Objects;
 @SequenceGenerator(
     name = "roleIdGenerator",
     sequenceName = "role_id_sequence",
-    allocationSize = 2
+    initialValue = 100,
+    allocationSize = 1
 )
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roleIdGenerator")
     private Long id;
+
     @Column(name = "role_name", unique = true)
     private String roleName;
 

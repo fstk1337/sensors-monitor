@@ -11,7 +11,8 @@ import java.util.Objects;
 @SequenceGenerator(
     name = "locationIdGenerator",
     sequenceName = "location_id_sequence",
-    allocationSize = 7
+    initialValue = 200,
+    allocationSize = 1
 )
 @Getter
 @Setter

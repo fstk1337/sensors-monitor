@@ -10,13 +10,13 @@ public interface UserService {
     Role save(Role role);
     List<User> getAllUsers();
     List<Role> getAllRoles();
-    User getUser(String username);
-    Role getRole(String roleName);
+    User getUser(Long id);
+    Role getRole(Long id);
     User update(User user);
     Role update(Role role);
     User applyRoleToUser(String  username, String roleName);
-    void delete(User user);
-    void delete(Role role);
+    int deleteUser(Long userId);
+    int deleteRole(Long roleId);
 
     void deleteAllUsers();
     void deleteAllRoles();
