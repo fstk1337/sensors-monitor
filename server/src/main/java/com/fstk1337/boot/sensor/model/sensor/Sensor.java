@@ -2,7 +2,6 @@ package com.fstk1337.boot.sensor.model.sensor;
 
 import lombok.*;
 import org.hibernate.Hibernate;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -27,7 +26,7 @@ public class Sensor {
     private String name;
     @Column(unique = true)
     private String model;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sensor_type_id")
     private SensorType sensorType;
     @Column(name = "min_value")

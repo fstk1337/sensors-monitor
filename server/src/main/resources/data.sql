@@ -6,7 +6,7 @@ INSERT INTO users(id, username, password, role_id)
 VALUES (100, 'admin', '3094042D4F193AE1B73F33E504BBCE2018E75993131F9C94FF3BCD29F3183F74', 100),
        (101, 'user', '081805BDA105816CE893EB730A7ED3030FC3DA71D7263B6BACF4205B46F4F66F', 101);
 
-INSERT INTO sensor_types(id, type, unit)
+INSERT INTO sensor_types(id, name, unit)
 VALUES (200, 'Pressure', 'bar'),
        (201, 'Voltage', 'voltage'),
        (202, 'Temperature', '°C'),

@@ -4,17 +4,12 @@ import com.fstk1337.boot.sensor.model.sensor.Sensor;
 import com.fstk1337.boot.sensor.model.sensor.SensorType;
 import com.fstk1337.boot.sensor.repository.sensor.SensorRepository;
 import com.fstk1337.boot.sensor.repository.sensor.SensorTypeRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional
-@Slf4j
 public class SensorServiceImpl implements SensorService {
     private final SensorRepository sensorRepository;
     private final SensorTypeRepository sensorTypeRepository;
@@ -46,8 +41,8 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public SensorType getSensorType(Long id) {
-        return sensorTypeRepository.findById(id).orElse(null);
+    public SensorType getSensorTypeByName(String name) {
+        return sensorTypeRepository.findByName(name);
     }
 
     @Override
@@ -59,9 +54,9 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public void delete(Sensor sensor) {
-        if (sensorRepository.exists(Example.of(sensor))) {
-            sensorRepository.delete(sensor);
+    public void delete(Long id) {
+        if (sensorRepository.existsById(id)) {
+            sensorRepository.deleteById(id);
         }
     }
 

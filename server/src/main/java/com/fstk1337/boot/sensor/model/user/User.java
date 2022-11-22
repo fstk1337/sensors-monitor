@@ -2,12 +2,13 @@ package com.fstk1337.boot.sensor.model.user;
 
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.annotation.Immutable;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Immutable
 @Table(name = "users")
 @Getter
 @Setter
@@ -18,13 +19,10 @@ public class User {
     @Id
     private Long id;
     @Column(unique = true)
-    @ReadOnlyProperty
     private String username;
-    @ReadOnlyProperty
     private String password;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
-    @ReadOnlyProperty
     private Role role;
 
     @Override

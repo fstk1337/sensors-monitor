@@ -2,9 +2,11 @@ package com.fstk1337.boot.sensor.controller;
 
 import com.fstk1337.boot.sensor.dto.SensorDto;
 import com.fstk1337.boot.sensor.model.sensor.Sensor;
+import com.fstk1337.boot.sensor.model.sensor.SensorType;
 import com.fstk1337.boot.sensor.service.sensor.SensorService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,5 +40,15 @@ public class SensorController {
             return ResponseEntity.ok(sensorResponse);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping
+    public ResponseEntity<SensorDto> createSensor(@RequestBody SensorDto sensorDto) {
+        Sensor sensorRequest = mapper.map(sensorDto, Sensor.class);
+        SensorType sensorType = sensorService.getSensorTypeByName(sensorDto.getType());
+        sensorRequest.setSensorType(sensorType);
+        Sensor newSensor = sensorService.save(sensorRequest);
+        SensorDto sensorResponse = mapper.map(newSensor, SensorDto.class);
+        return new ResponseEntity<>(sensorResponse, HttpStatus.CREATED);
     }
 }

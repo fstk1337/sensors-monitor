@@ -10,8 +10,8 @@ public interface SensorService {
     List<Sensor> getAllSensors();
     List<SensorType> getAllSensorTypes();
     Sensor getSensor(Long id);
-    SensorType getSensorType(Long id);
+    SensorType getSensorTypeByName(String name);
     Sensor update(Sensor sensor);
-    void delete(Sensor sensor);
+    void delete(Long id);
     void deleteAllSensors();
 }

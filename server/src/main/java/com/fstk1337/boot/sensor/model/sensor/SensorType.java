@@ -2,7 +2,7 @@ package com.fstk1337.boot.sensor.model.sensor;
 
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.annotation.Immutable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
+@Immutable
 @Table(name = "sensor_types")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,9 +20,7 @@ import java.util.Objects;
 public class SensorType {
     @Id
     private Long id;
-    @ReadOnlyProperty
-    private String type;
-    @ReadOnlyProperty
+    private String name;
     private String unit;
 
     @Override

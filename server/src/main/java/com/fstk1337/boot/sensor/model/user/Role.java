@@ -2,12 +2,13 @@ package com.fstk1337.boot.sensor.model.user;
 
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.annotation.Immutable;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Immutable
 @Table(name = "roles")
 @Getter
 @Setter
@@ -18,7 +19,6 @@ public class Role {
     @Id
     private Long id;
     @Column(name = "role_name", unique = true)
-    @ReadOnlyProperty
     private String roleName;
 
     @Override
