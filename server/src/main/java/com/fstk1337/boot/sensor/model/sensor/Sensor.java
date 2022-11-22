@@ -24,14 +24,11 @@ public class Sensor {
     private Long id;
     @Column(unique = true)
     private String name;
-    @Column(unique = true)
     private String model;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sensor_type_id")
     private SensorType sensorType;
-    @Column(name = "min_value")
     private int minValue;
-    @Column(name = "max_value")
     private int maxValue;
     @Basic
     private String location;

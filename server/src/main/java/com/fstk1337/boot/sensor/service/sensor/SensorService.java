@@ -7,9 +7,12 @@ import java.util.List;
 
 public interface SensorService {
     Sensor save(Sensor sensor);
+    boolean sensorExists(String name);
+    boolean sensorExists(Long id);
     List<Sensor> getAllSensors();
     List<SensorType> getAllSensorTypes();
-    Sensor getSensor(Long id);
+    Sensor getSensorById(Long id);
+    Sensor getSensorByName(String name);
     SensorType getSensorTypeByName(String name);
     Sensor update(Sensor sensor);
     void delete(Long id);

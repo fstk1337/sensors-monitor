@@ -36,8 +36,23 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public Sensor getSensor(Long id) {
+    public Sensor getSensorById(Long id) {
         return sensorRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Sensor getSensorByName(String name) {
+        return sensorRepository.findByName(name);
+    }
+
+    @Override
+    public boolean sensorExists(String name) {
+        return sensorRepository.existsByName(name);
+    }
+
+    @Override
+    public boolean sensorExists(Long id) {
+        return sensorRepository.existsById(id);
     }
 
     @Override
