@@ -1,0 +1,20 @@
+<div class="container">
+    <form id="login-form" class="form" (submit)="this.Login($event)">
+        <h1 class="form-title">Login Form</h1>
+        <p class="form-status">{{ this.message }}</p>
+        <div>
+            <mat-form-field appearance="outline" class="form-control">
+                <mat-label for="login">Login</mat-label>
+                <input matInput id="login" type="text" [formControl]="login">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="form-control">
+                <mat-label for="password">Password</mat-label>
+                <input matInput id="password" type="password" name="password" [formControl]="password" />
+            </mat-form-field>
+        </div>
+        <button mat-raised-button class="btn-submit" color="primary" type="submit" form="login-form">Login</button>
+    </form>
+    <div>
+</div>
