@@ -1,6 +1,6 @@
-package com.fstk1337.boot.sensor.repository.user;
+package com.fstk1337.boot.sensor.repository;
 
-import com.fstk1337.boot.sensor.model.user.User;
+import com.fstk1337.boot.sensor.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

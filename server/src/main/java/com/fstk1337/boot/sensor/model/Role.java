@@ -1,4 +1,4 @@
-package com.fstk1337.boot.sensor.model.user;
+package com.fstk1337.boot.sensor.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;

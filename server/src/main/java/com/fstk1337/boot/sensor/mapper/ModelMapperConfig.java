@@ -1,7 +1,7 @@
-package com.fstk1337.boot.sensor.config;
+package com.fstk1337.boot.sensor.mapper;
 
 import com.fstk1337.boot.sensor.dto.SensorDto;
-import com.fstk1337.boot.sensor.model.sensor.Sensor;
+import com.fstk1337.boot.sensor.model.Sensor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.context.annotation.Bean;

@@ -1,9 +1,10 @@
-package com.fstk1337.boot.sensor.service.sensor;
+package com.fstk1337.boot.sensor.service;
 
-import com.fstk1337.boot.sensor.model.sensor.Sensor;
-import com.fstk1337.boot.sensor.model.sensor.SensorType;
-import com.fstk1337.boot.sensor.repository.sensor.SensorRepository;
-import com.fstk1337.boot.sensor.repository.sensor.SensorTypeRepository;
+import com.fstk1337.boot.sensor.model.Sensor;
+import com.fstk1337.boot.sensor.model.SensorType;
+import com.fstk1337.boot.sensor.repository.SensorRepository;
+import com.fstk1337.boot.sensor.repository.SensorTypeRepository;
+import com.fstk1337.boot.sensor.service.SensorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

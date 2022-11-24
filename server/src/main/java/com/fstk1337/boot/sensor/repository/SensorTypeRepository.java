@@ -1,6 +1,6 @@
-package com.fstk1337.boot.sensor.repository.sensor;
+package com.fstk1337.boot.sensor.repository;
 
-import com.fstk1337.boot.sensor.model.sensor.SensorType;
+import com.fstk1337.boot.sensor.model.SensorType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

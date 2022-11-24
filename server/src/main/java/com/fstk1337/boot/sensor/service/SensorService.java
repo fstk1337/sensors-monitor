@@ -1,7 +1,7 @@
-package com.fstk1337.boot.sensor.service.sensor;
+package com.fstk1337.boot.sensor.service;
 
-import com.fstk1337.boot.sensor.model.sensor.Sensor;
-import com.fstk1337.boot.sensor.model.sensor.SensorType;
+import com.fstk1337.boot.sensor.model.Sensor;
+import com.fstk1337.boot.sensor.model.SensorType;
 
 import java.util.List;
 

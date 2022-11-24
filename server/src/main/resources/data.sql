@@ -2,9 +2,9 @@ INSERT INTO roles(id, role_name)
 VALUES (100, 'Administrator'),
        (101, 'Viewer');
 
-INSERT INTO users(id, username, password, role_id)
-VALUES (100, 'admin', '3094042D4F193AE1B73F33E504BBCE2018E75993131F9C94FF3BCD29F3183F74', 100),
-       (101, 'user', '081805BDA105816CE893EB730A7ED3030FC3DA71D7263B6BACF4205B46F4F66F', 101);
+INSERT INTO users(id, username, password, role_id, active)
+VALUES (100, 'admin', '$2y$10$P8kJ9NPMffFUqiQnhICPfeRwdqOOga2CvSAivnhUhLTshhmXjxjBW', 100, TRUE),
+       (101, 'user', '$2y$10$/2.IdCxRrdKmjrMkq..TreB0R/aJKL.8zifT6aD0WuUsaDSDgkX7S', 101, TRUE);
 
 INSERT INTO sensor_types(id, name, unit)
 VALUES (200, 'Pressure', 'bar'),

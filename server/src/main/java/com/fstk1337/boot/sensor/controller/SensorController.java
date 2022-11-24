@@ -1,30 +1,26 @@
 package com.fstk1337.boot.sensor.controller;
 
 import com.fstk1337.boot.sensor.dto.SensorDto;
-import com.fstk1337.boot.sensor.model.sensor.Sensor;
-import com.fstk1337.boot.sensor.model.sensor.SensorType;
-import com.fstk1337.boot.sensor.service.sensor.SensorService;
+import com.fstk1337.boot.sensor.model.Sensor;
+import com.fstk1337.boot.sensor.model.SensorType;
+import com.fstk1337.boot.sensor.service.SensorService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/sensors")
+@AllArgsConstructor
 public class SensorController {
     private final SensorService sensorService;
     private final ModelMapper mapper;
-
-    @Autowired
-    public SensorController(ModelMapper mapper, SensorService sensorService) {
-        this.sensorService = sensorService;
-        this.mapper = mapper;
-    }
 
     @GetMapping
     public List<SensorDto> getAllSensors() {
@@ -66,7 +62,7 @@ public class SensorController {
                     String.format("Sensor with id = %d not found", id)));
         }
         Sensor sensorRequest = mapper.map(sensorDto, Sensor.class);
-        if (sensorService.sensorExists(sensorRequest.getName())) {
+        if (sensorService.sensorExists(sensorRequest.getName()) && !Objects.equals(sensorService.getSensorByName(sensorRequest.getName()).getId(), id)) {
             return ResponseEntity.unprocessableEntity().body(Map.of(
                     "message",
                     String.format("Sensor with name %s already exists", sensorRequest.getName())));
