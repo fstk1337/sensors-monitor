@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.util.Base64.getDecoder;
+
 @Service
 @Slf4j
 public class JwtUtil {
@@ -34,21 +36,24 @@ public class JwtUtil {
     }
 
     public String extractUsername(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getSubject();
+        String decodedKey = new String(getDecoder().decode(SECRET_KEY));
+        return Jwts.parser().setSigningKey(decodedKey).parseClaimsJws(token).getBody().getSubject();
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
+        String decodedKey = new String(getDecoder().decode(SECRET_KEY));
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_MS))
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS256, decodedKey)
                 .compact();
     }
 
     private boolean isTokenExpired(String token) {
-        Date expiration = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getExpiration();
+        String decodedKey = new String(getDecoder().decode(SECRET_KEY));
+        Date expiration = Jwts.parser().setSigningKey(decodedKey).parseClaimsJws(token).getBody().getExpiration();
         return expiration.before(new Date());
     }
 
