@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { AuthRequest } from '../interface/auth-request';
 import { AuthResponse } from '../interface/auth-response';
 import { environment } from 'src/environment/environment';
-import { AuthDetails } from '../interface/auth-details';
+import { AuthDetails, TokenPayload } from '../interface/auth-details';
 
-import jwt_decode from '../util/jwt-util';
+import jwtDecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -30,15 +30,15 @@ export class AuthService {
   }
 
   parseToken(token: string): AuthDetails {
-    const secret = atob(environment.secret);
-    const result = jwt_decode(token, secret);
+    const result: TokenPayload = jwtDecode(token, { header: false });
     const { sub, role, exp, iat } = result;
-    return {
-      username: sub,
-      role,
-      issued: new Date(iat * 1000),
-      expires: new Date(exp * 1000)
+    const parsed: AuthDetails = {
+      username: sub ? sub : '',
+      role: role? role : '',
+      issued: new Date(iat? iat * 1000 : 0),
+      expires: new Date(exp? exp * 1000 : 0)
     };
+    return parsed;
   }
 }
 

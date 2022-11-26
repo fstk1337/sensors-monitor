@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppLoginFormComponent } from '../components/login-form/app-login-form.component';
+import { SensorTableComponent } from 'src/app/components/sensor-table/sensor-table.component';
+import { LoginFormComponent } from '../../components/login-form/login-form.component';
 
 const routes: Routes = [
-  { path: 'login', component: AppLoginFormComponent },
+  { path: 'login', component: LoginFormComponent },
+  { path: 'sensors', component: SensorTableComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
