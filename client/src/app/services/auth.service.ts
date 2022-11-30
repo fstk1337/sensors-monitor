@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthRequest } from '../interface/auth-request';
-import { AuthResponse } from '../interface/auth-response';
+import { AuthRequest } from '../interfaces/auth-request';
+import { AuthResponse } from '../interfaces/auth-response';
 import { environment } from 'src/environment/environment';
-import { AuthDetails, TokenPayload } from '../interface/auth-details';
+import { AuthDetails, TokenPayload } from '../interfaces/auth-details';
 
 import jwtDecode from 'jwt-decode';
 

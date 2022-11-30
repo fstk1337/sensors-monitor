@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthRequest } from 'src/app/interface/auth-request';
-import { AuthResponse } from 'src/app/interface/auth-response';
-import { AuthService } from 'src/app/service/auth.service';
+import { AuthRequest } from 'src/app/interfaces/auth-request';
+import { AuthResponse } from 'src/app/interfaces/auth-response';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'login-form',
