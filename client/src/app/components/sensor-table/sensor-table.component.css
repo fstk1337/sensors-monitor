@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+h1 {
+    margin: 0;
+    margin-left: 40px;
+    font-weight: 600;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.logout-btn {
+    margin-right: 30px;
+}
+
+.table-wrapper {
+    padding: 50px;
+}
+
+.search-btn {
+    margin-left: 10px;
+}
+
+.table {
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.table-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-mdc-paginator {
+    width: 50%!important;
+}
+
+tbody tr::before {
+    cursor: pointer;
+    font-family: 'Material Icons';
+    font-size: 24px;
+    content: "\E3C9";
+    padding: 2px;
+    border: 1px solid black;
+}
+
+tbody tr::after {
+    cursor: pointer;
+    font-family: 'Material Icons';
+    font-size: 24px;
+    content: "\E14C";
+    padding: 2px;
+    border: 1px solid black;
+}

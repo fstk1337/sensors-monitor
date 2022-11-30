@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from '../components/app.component';
-import { LoginFormComponent } from '../components/login-form/login-form.component';
+import { AppComponent } from './app.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
-import { AppRouterModule } from './router/router.module';
-import { AppMaterialModule } from './material/material.module';
+import { AppRouterModule } from './modules/router/router.module';
+import { AppMaterialModule } from './modules/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SensorTableComponent } from './components/sensor-table/sensor-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SensorTableComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRouterModule,
