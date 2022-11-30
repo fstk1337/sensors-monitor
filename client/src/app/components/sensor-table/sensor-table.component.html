@@ -4,18 +4,42 @@
         <span class="spacer"></span>
         <button mat-flat-button color="basic" class="logout-btn" type="button" (click)="this.logout()">Logout</button>
     </mat-toolbar>
-    <div class="table-wrapper">
+    <div class="search">
         <mat-form-field appearance="outline">
-            <input matInput [(ngModel)]="filterValue" placeholder="enter text to search" />
+            <mat-label>enter text to search</mat-label>
+            <input matInput [(ngModel)]="filterValue" class="search-text">
+            <button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="this.clearFilter()">
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
         <button mat-raised-button class="search-btn" type="button" (click)="this.applyFilter()">
             <mat-icon fontIcon="search"></mat-icon>
             Search
         </button>
-        <table mat-table [dataSource]="sensors" class="mat-elevation-z8 table" id="sensors-table">
+    </div>
+    <div class="table-wrapper">
+        <table mat-table [dataSource]="dataSource" class="table" id="sensors-table">
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let sensor">
+                    <mat-icon aria-hidden="false" fontIcon="edit" class="icon edit-icon"></mat-icon>
+                </td>
+            </ng-container>
+
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>
-                <td mat-cell *matCellDef="let sensor">{{ sensor.name }}</td>
+                <td
+                    mat-cell
+                    *matCellDef="let sensor"
+                >
+                    <span
+                        class="sensor-name"
+                        [matTooltip]="sensor.description"
+                        matTooltipPosition="below"
+                        matTooltipShowDelay="500"
+                        matTooltipHideDelay="200"
+                    >{{ sensor.name }}</span>
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="model">
@@ -43,20 +67,28 @@
                 <td mat-cell *matCellDef="let sensor">{{ sensor.location }}</td>
             </ng-container>
 
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let sensor">
+                    <mat-icon aria-hidden="false" fontIcon="clear" class="icon delete-icon"></mat-icon>
+                </td>
+            </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
 
         <div class="table-options">
             <button mat-raised-button color="primary" type="button">Add Sensor</button>
-            <mat-paginator 
-                #paginator
-                showFirstLastButtons
-                pageSize="4"
-                aria-label="Select page of sensors">
-            </mat-paginator>
-            <div>
-                Total
+            <div class="table-paging">
+                <mat-paginator 
+                    #paginator
+                    showFirstLastButtons="true"
+                    hidePageSize
+                    pageSize="4"
+                    aria-label="Select page of sensors">
+                </mat-paginator>
+                <span>Total: {{ this.dataSource.filteredData.length }}</span>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [],
@@ -16,7 +17,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
       MatToolbarModule,
       MatTableModule,
       MatIconModule,
-      MatPaginatorModule
+      MatPaginatorModule,
+      MatTooltipModule
     ],
     providers: []
   })
